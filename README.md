@@ -111,3 +111,12 @@ Email: JUNWEI002@e.ntu.edu.sg
 - This repository focuses on **algorithm validation and simulation**
 - Real-time implementation details are described in the paper
 - Intended for **research and academic use**
+
+## © Copyright
+
+© 2026 Junwei Ji
+
+This code is released for **academic research and educational use only**.  
+For other use, please contact the author.
+
+If you use this repository in your work, please cite the associated paper.
