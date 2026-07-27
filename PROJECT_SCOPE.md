@@ -72,7 +72,7 @@ The controller step size, duration, constraint parameter `alpha`, noise source, 
 
 Although the constructor accepts `node_num`, many controller and fusion operations are manually expanded for six nodes. Arbitrary-node support must not be claimed without generalizing and validating every hard-coded operation.
 
-## Repository path note
+## Repository paths
 
 The committed acoustic-path assets are located at:
 
@@ -81,14 +81,9 @@ simulation path/PrimaryPath_1x6.mat
 simulation path/SecondaryPath_6x6.mat
 ```
 
-The current `FedDMCANC_case*.m` scripts reference:
+All five `FedDMCANC_case*.m` scripts use these repository-root-relative paths. The cases are intended to be launched with the repository root as the MATLAB working directory, or with the repository root available on the MATLAB path.
 
-```text
-path/simulation path/PrimaryPath_1x6.mat
-path/simulation path/SecondaryPath_6x6.mat
-```
-
-This path mismatch is a current reproduction issue. It must be checked before claiming that a case runs directly from the repository root. A future fix should update code and documentation together without moving or duplicating data silently.
+Do not move or duplicate the `.mat` assets silently. A future directory change must update all affected scripts and documentation together.
 
 ## Algorithm components
 
