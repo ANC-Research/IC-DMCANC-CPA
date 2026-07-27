@@ -10,8 +10,8 @@ T  = 90;     % time
 t  = 0:1/Fs:T;
 N  = length(t);
 
-load("path/simulation path/SecondaryPath_6x6.mat");
-load("path/simulation path/PrimaryPath_1x6.mat");
+load("simulation path/SecondaryPath_6x6.mat");
+load("simulation path/PrimaryPath_1x6.mat");
 
 PrimaryPath = Primary_path;
 SecondaryPath = Secondary_path;
