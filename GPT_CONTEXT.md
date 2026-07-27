@@ -191,10 +191,10 @@ Do not reuse results, parameters, or plots across cases without checking their i
 
 ## Data and path rules
 
-- The committed path assets currently exist under `simulation path/`.
-- The current case scripts reference `path/simulation path/`; treat this as a known reproduction-path mismatch until explicitly fixed.
-- Do not silently duplicate or move `.mat` assets to hide the mismatch.
-- A path fix should update affected scripts and documentation together and then be validated from the repository root.
+- The committed path assets and all five case scripts use the repository-root-relative directory `simulation path/`.
+- Run the cases from the repository root, or ensure the repository root is available on the MATLAB path.
+- Do not silently duplicate, rename, or move `.mat` assets.
+- A future directory change must update all affected scripts and documentation together and then be validated from the repository root.
 - Preserve the included compressor recording and simulation paths unless the user explicitly requests an asset change.
 - Do not commit private recordings, measured paths, credentials, or machine-specific absolute paths.
 - Treat generated plots and saved workspaces as experiment artifacts, not source-code authority.
