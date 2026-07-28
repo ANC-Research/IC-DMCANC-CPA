@@ -66,7 +66,7 @@ Tc = 0.5; % communication interval (seconds)
 results = cell(length(alpha), 1); % Initialize a cell array to store results
 FedDMCANC_temp = FedDMCANC; % Preserve the original FedDMCANC
 for idx = 1:length(alpha)
-    [e_FedDMCANC, FedDMCANC_temp] = FedMCANC_166_PCF(FedDMCANC_temp, muw, alpha(idx), Wcsubopt, Tc);
+    [e_FedDMCANC, FedDMCANC_temp] = FedMCANC_166_PCF(FedDMCANC, muw, alpha(idx), Wcsubopt, Tc);
     results{idx} = struct('e_FedDMCANC', e_FedDMCANC, 'FedDMCANC', FedDMCANC_temp); % Store results in a struct
 end
 
