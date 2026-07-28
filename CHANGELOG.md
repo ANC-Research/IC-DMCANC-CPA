@@ -6,6 +6,14 @@ This file records significant repository-level changes from its introduction onw
 
 ### Added
 
+- Added an independent `Python version/` reference implementation for the fixed
+  1×6×6 system, including the four FedDMCANC communication modes,
+  compensation-filter identification and MWD fusion, the centralized FxLMS
+  and MGDFxLMS case baselines, five case entry points, deterministic signal
+  generation, MAT-file validation, JSON/NPZ/CSV/plot diagnostics, optional
+  Numba acceleration, MATLAB fixture export, tests, and full usage
+  documentation. The existing MATLAB implementation remains unchanged and
+  authoritative.
 - Added `PROJECT_SCOPE.md` to define the repository as a paper-specific intermittent-communication Distributed ANC project, identify the authoritative MATLAB implementation and experiment cases, document the six-node system, WCFxLMS-style local update, MWD fusion, communication modes, coprocessor abstraction, boundaries, and validation expectations.
 - Added `GPT_CONTEXT.md` to define required reading, task isolation, six-node structural assumptions, communication-schedule rules, local-constraint and fusion boundaries, coprocessor interpretation, experiment-case separation, public-content restrictions, path handling, MATLAB change discipline, and verification requirements.
 - Added this changelog for future user-visible algorithm, communication schedule, fusion, parameter, data-path, architecture, experiment, interface, and documentation changes.

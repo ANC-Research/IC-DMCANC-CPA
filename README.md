@@ -6,7 +6,8 @@
 
 ## 📄 Paper
 
-This repository provides the MATLAB implementation of the method proposed in:
+This repository provides the authoritative MATLAB implementation and a
+separately scoped Python reference implementation of the method proposed in:
 
 **Junwei Ji**, Dongyuan Shi, Xiaoyi Shen, Woon-Seng Gan, Jie Chen, Jun Yang  
 *Implementation of distributed multichannel active noise control with intermittent communication and coprocessor assisted data combination*  
@@ -57,6 +58,7 @@ Compared with conventional approaches, the proposed framework:
 ├── FedMCANC.m                   % Class and function
 ├── McANC_FxLMS_SIMO.m           % MEFxLMS
 ├── compressor_16kHz.mat         % Real recorded noise
+├── Python version/              % Fixed 1×6×6 Python reference and tests
 └── README.md
 
 ```
@@ -73,6 +75,22 @@ Compared with conventional approaches, the proposed framework:
 
 ```matlab
 run('FedDMCANC_case1.m')
+```
+
+### Python reference
+
+The independent Python port preserves the current six-node sample update,
+secondary-path coupling, compensation-filter orientation, MWD tail selection,
+and communication schedules. MATLAB remains the algorithm authority.
+
+See [`Python version/README.md`](./Python%20version/README.md) for installation,
+case commands, parameters, outputs, tests, performance notes, and known
+cross-language differences.
+
+```bash
+cd "Python version"
+python -m pip install -r requirements.txt
+python -m cases.case1 --quick
 ```
 
 ## 📊 Results Summary

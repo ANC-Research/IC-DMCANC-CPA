@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`IC-DMCANC-CPA` is the public MATLAB reference repository for **Distributed Multichannel Active Noise Control with Intermittent Communication and Coprocessor-Assisted Data Combination**.
+`IC-DMCANC-CPA` is the public reference repository for **Distributed Multichannel Active Noise Control with Intermittent Communication and Coprocessor-Assisted Data Combination**. The existing MATLAB implementation remains authoritative; `Python version/` is a separately scoped offline reference port.
 
 The repository accompanies the paper:
 
@@ -36,6 +36,30 @@ McANC_FxLMS_SIMO.m
 ```
 
 The MATLAB source and the associated paper are the authority for algorithm definitions, communication schedules, experiment conditions, and result interpretation.
+
+The Python implementation must be checked against those files rather than
+treated as a second algorithm authority.
+
+## Python implementation track
+
+```text
+Python version/
+```
+
+The Python track is limited to a strict offline reference of the currently
+used six-node methods:
+
+- the four `FedMCANC` communication modes;
+- compensation-filter system identification and final `-flip`;
+- the 1×6×6 centralized FxLMS path used by cases 1 and 2;
+- the 1×6×6 MGDFxLMS gradient-transmission path used by cases 1 and 2;
+- independent Case 3/4 parameter-sweep initialization;
+- data loading, deterministic inputs, diagnostics, plotting, and tests.
+
+It does not establish arbitrary-node support, real-time behavior, hardware
+execution, firmware, GPU support, or a formal stability proof. Any numerical
+difference from MATLAB must be reported, and MATLAB definitions take
+precedence until the difference is resolved.
 
 ## Current system model
 
@@ -228,7 +252,8 @@ The comparison implementations are authoritative only for this repository's repr
 - Claims of arbitrary node-count support without code generalization and validation.
 - Coprocessor firmware, communication drivers, packet protocols, fixed-point deployment, or real-time hardware code not present in the repository.
 - Packet loss, transmission delay, quantization, topology changes, or network scheduling unless added as a documented extension.
-- Python, C/C++, embedded, or firmware ports unless introduced as a separate implementation track.
+- Other Python, C/C++, embedded, or firmware ports outside the separately
+  documented `Python version/` reference track.
 - Private acoustic data, credentials, machine-specific absolute paths, or confidential results.
 
 ## Core invariants
@@ -278,3 +303,15 @@ Changes should use the strongest applicable checks:
 12. report every modified, added, renamed, or deleted file.
 
 When MATLAB execution is unavailable, clearly separate code-level validation from reproduction results that still require local MATLAB and toolbox execution.
+
+For Python changes, also run:
+
+```text
+cd "Python version"
+python -m unittest discover -s tests -v
+python -m cases.case1 --quick
+```
+
+The optional MATLAB-exported fixture and Numba parity tests may be skipped only
+when their corresponding runtimes are unavailable, and that limitation must be
+reported.

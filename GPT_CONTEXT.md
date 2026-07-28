@@ -4,7 +4,11 @@
 
 This is the public `ANC-Research/IC-DMCANC-CPA` repository.
 
-It contains a paper-specific MATLAB implementation of distributed multichannel ANC with intermittent communication and coprocessor-assisted data combination. Do not treat it as a general ANC library, an event-triggered asynchronous-communication project, feedback ANC, or output-constrained ANC.
+It contains a paper-specific authoritative MATLAB implementation and a
+separately scoped `Python version/` offline reference of distributed
+multichannel ANC with intermittent communication and coprocessor-assisted data
+combination. Do not treat it as a general ANC library, an event-triggered
+asynchronous-communication project, feedback ANC, or output-constrained ANC.
 
 Because this repository is public, do not add private repository names, unpublished methods, private data descriptions, internal results, credentials, or confidential future plans.
 
@@ -28,6 +32,8 @@ Always use the latest requested branch. Do not rely only on previous conversatio
 - `DMANC_CompensateSP.m` is the MGDFxLMS / gradient-transmission comparison used in this project.
 - `McANC_FxLMS_SIMO.m` is the centralized 1 × 6 × 6 comparison used in this project.
 - The committed `.mat` files define the current public simulation paths and compressor-noise asset.
+- `Python version/` must follow these MATLAB definitions; it is not an
+  independent algorithm authority.
 - Keep unrelated cases and comparison methods read-only unless the request affects them.
 
 ## Task isolation
@@ -41,6 +47,10 @@ At the start of each task, identify:
 - which controller states, residual errors, communication events, plots, and saved variables are expected to change.
 
 Do not assume that values or communication schedules from one case apply to another.
+
+For Python work, also identify whether the request changes the readable
+reference kernel, optional Numba execution of the same kernel, case
+orchestration, data parity, diagnostics, or MATLAB/Python equivalence tests.
 
 ## Current structural assumptions
 
@@ -219,6 +229,26 @@ Do not import code, parameters, or conclusions from other ANC repositories unles
 In particular, do not merge this implementation with the event-triggered asynchronous-communication project. The repositories represent different communication architectures and must remain independently traceable.
 
 Similarly named WCFxLMS, MWD, FxLMS, compensation-filter, or communication routines in different repositories are independent implementations until their equations, schedules, and conventions have been compared.
+
+## Python track restrictions
+
+The committed Python track remains fixed at 1×6×6 and float64. Preserve:
+
+- full 6×6 plant coupling and diagonal local filtered references;
+- local-update-before-communication sample order;
+- `-identified_coefficients[::-1]` compensation storage;
+- `lfilter`-equivalent final-tail MWD selection;
+- MATLAB one-based communication triggers;
+- integer-only communication periods;
+- node-ordered individual triggers and stale differences;
+- independent Case 3/4 sweep initialization;
+- separate compensation-ID calls for MGDFxLMS and FedDMCANC in Cases 1/2.
+
+Do not add GPU, arbitrary-node claims, block updates, hardware/real-time claims,
+or external DFxLMS/ADFxLMS implementations without a separately approved scope.
+When MATLAB, Numba, or full-duration execution is unavailable, report the
+corresponding validation as pending rather than claiming full numerical
+equivalence.
 
 ## Verification
 

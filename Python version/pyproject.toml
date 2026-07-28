@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ic-dmcanc-cpa-reference"
+version = "0.1.0"
+description = "Fixed six-node Python reference for IC-DMCANC-CPA"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+fast = ["numba>=0.59"]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["ic_dmcanc*", "cases*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
